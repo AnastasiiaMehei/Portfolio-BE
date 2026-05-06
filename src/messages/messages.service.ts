@@ -16,4 +16,13 @@ export class MessagesService {
       throw new Error('Failed to save message');
     }
   }
+
+  async findAll() {
+    try {
+      return await this.prisma.message.findMany();
+    } catch (error) {
+      console.error('Error fetching messages:', error);
+      throw new Error('Failed to fetch messages');
+    }
+  }
 }
