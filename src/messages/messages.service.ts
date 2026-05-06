@@ -6,9 +6,14 @@ import { CreateMessageDto } from './dto/create-message.dto';
 export class MessagesService {
   constructor(private readonly prisma: PrismaService) {}
 
-  create(createMessageDto: CreateMessageDto) {
-    return this.prisma.message.create({
-      data: createMessageDto,
-    });
+  async create(createMessageDto: CreateMessageDto) {
+    try {
+      return await this.prisma.message.create({
+        data: createMessageDto,
+      });
+    } catch (error) {
+      console.error('Error creating message:', error);
+      throw new Error('Failed to save message');
+    }
   }
 }

@@ -19,7 +19,7 @@ NestJS backend for saving user messages via Prisma and PostgreSQL.
 docker compose up --build
 ```
 
-3. The API will be available at `http://localhost:3000/messages`.
+3. The API will be available at `https://portfolio-be-6hdi.onrender.com/messages`.
 
 ## Sample request body
 
