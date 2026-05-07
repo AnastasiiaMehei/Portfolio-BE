@@ -8,12 +8,15 @@ export class MessagesService {
 
   async create(createMessageDto: CreateMessageDto) {
     try {
-      return await this.prisma.message.create({
+      console.log('Service: Creating message with data:', createMessageDto);
+      const result = await this.prisma.message.create({
         data: createMessageDto,
       });
+      console.log('Service: Message created successfully:', result);
+      return result;
     } catch (error) {
-      console.error('Error creating message:', error);
-      throw new Error('Failed to save message');
+      console.error('Service: Error creating message:', error);
+      throw error;
     }
   }
 

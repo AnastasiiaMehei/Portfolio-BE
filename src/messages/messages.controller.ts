@@ -7,12 +7,20 @@ export class MessagesController {
   constructor(private readonly messagesService: MessagesService) {}
 
   @Post()
-  create(@Body() createMessageDto: CreateMessageDto) {
-    return this.messagesService.create(createMessageDto);
+  async create(@Body() createMessageDto: CreateMessageDto) {
+    try {
+      console.log('Controller: Received message:', createMessageDto);
+      const result = await this.messagesService.create(createMessageDto);
+      console.log('Controller: Message saved:', result);
+      return result;
+    } catch (error) {
+      console.error('Controller error:', error);
+      throw error;
+    }
   }
 
   @Get()
-  findAll() {
+  async findAll() {
     return this.messagesService.findAll();
   }
 }
